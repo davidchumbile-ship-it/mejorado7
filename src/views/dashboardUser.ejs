@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --nav-bg: #0f0f11;
+            --nav-border: #1e1e22;
+            --surface: #16161a;
+            --surface2: #1c1c21;
+            --surface3: #222228;
+            --accent: #e8533a;
+            --accent2: #f07a65;
+            --text: #f0ede8;
+            --text-muted: #8a8890;
+            --text-dim: #55545e;
+            --border: #2a2a32;
+        }
+
+        body {
+            background: var(--surface);
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        nav {
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--nav-border);
+            padding: 0 2rem;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            letter-spacing: -.02em;
+            text-decoration: none;
+        }
+
+        .brand-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .brand-sub {
+            font-weight: 300;
+            color: var(--text-dim);
+            font-size: 14px;
+            font-family: 'DM Sans', sans-serif;
+            margin-left: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all .15s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--surface2);
+        }
+
+        .btn-logout {
+            margin-left: 8px;
+            color: var(--accent2);
+            border: 1px solid #3d2119;
+            border-radius: 6px;
+            padding: 5px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            background: transparent;
+            font-family: 'DM Sans', sans-serif;
+            transition: all .15s;
+        }
+
+        .btn-logout:hover {
+            background: #2d1a18;
+        }
+
+        .main {
+            padding: 2.5rem 2rem;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -.03em;
+        }
+
+        .page-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, #1e1218, #1c1820);
+            border: 1px solid #3a2535;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2d1a18, #3d2520);
+            border: 1px solid #3d2520;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--accent2);
+            flex-shrink: 0;
+        }
+
+        .welcome-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -.02em;
+        }
+
+        .welcome-role {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .info-item {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+
+        .info-item.full {
+            grid-column: 1 / -1;
+        }
+
+        .info-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--text-dim);
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: var(--text);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#" class="brand"><span class="brand-dot"></span>App JWT<span class="brand-sub">/ User</span></a>
+        <div class="nav-links">
+            <a href="/profile">Mi Perfil</a>
+            <button class="btn-logout" id="logoutBtn">Cerrar sesión</button>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="page-header">
+            <h1 class="page-title">Mi espacio</h1>
+            <p class="page-subtitle">Información de tu cuenta</p>
+        </div>
+
+        <div class="welcome-banner">
+            <div class="avatar" id="userAvatar"></div>
+            <div>
+                <div class="welcome-name" id="welcomeName"></div>
+                <div class="welcome-role" id="welcomeRole"></div>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Correo electrónico</div>
+                <div class="info-value" id="userEmail">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Teléfono</div>
+                <div class="info-value" id="userPhone">—</div>
+            </div>
+            <div class="info-item full">
+                <div class="info-label">Dirección</div>
+                <div class="info-value" id="userAddress">—</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            protectRoute(['user', 'admin'], (user) => {
+                const initials = ((user.name?.[0] || '') + (user.lastName?.[0] || '')).toUpperCase();
+                document.getElementById('userAvatar').textContent = initials;
+                document.getElementById('welcomeName').textContent = `${user.name} ${user.lastName}`;
+                document.getElementById('welcomeRole').textContent = `Usuario activo · Rol: ${user.roles?.map(r => r.name).join(', ') || 'user'}`;
+                document.getElementById('userEmail').textContent = user.email;
+                document.getElementById('userPhone').textContent = user.phoneNumber || 'N/A';
+                document.getElementById('userAddress').textContent = user.address || 'N/A';
+            });
+        });
+    </script>
+</body>
+
+</html>
